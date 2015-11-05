@@ -47,6 +47,12 @@ public class Login extends AppCompatActivity {
         Parse.initialize(this, "lR6GLeaXbzKFKbog1yK4ya0DU6D0R2HHrcA471Rb", "H6JEZRtTbqRdME8YjWNgtP2W3tByfxzDvYwLAaYe");
     }
 
+    @Override
+    public void onBackPressed() {
+        ParseUser.logOut();
+        finish();
+    }
+
     public boolean isOnline() {
         ConnectivityManager cm =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
