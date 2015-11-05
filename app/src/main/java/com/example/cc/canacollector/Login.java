@@ -1,16 +1,14 @@
 package com.example.cc.canacollector;
 
-import android.app.ActionBar;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Toast;
 
 import com.example.cc.canacollector.Model.Cachaca;
