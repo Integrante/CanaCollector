@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:screenOrientation="portrait"
+    tools:context="com.example.breno.canacollector.Moagem"
+    android:background="#2c5820">
+
+    <TextView android:text="Quantidade de cana (Kg):" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/qtdeCanaTextView"
+        android:textSize="22dp"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/qtdeCanaEditText"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/qtdeCanaEditText"
+        android:textColor="#ffffff"
+        android:singleLine="false"
+        android:layout_above="@+id/brixEditText"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="Talhão Proveniente:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/talhaoTextView"
+        android:textSize="22dp"
+        android:textColor="#ffffff"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/provenienteSpinner"
+        android:spinnerMode="dropdown"
+        android:clickable="false"
+        android:prompt="@string/spinner_title"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:textSize="22dp"
+        android:backgroundTint="#ffffff"
+        android:singleLine="true"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/talhaoTextView"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar"
+        android:id="@+id/moerSaveButton"
+        android:layout_marginBottom="44dp"
+        android:onClick="moerSaveButton_clicked"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brix:"
+        android:id="@+id/brixTextView"
+        android:textSize="22dp"
+        android:textColor="#ffffff"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/brixEditText"
+        android:textSize="22dp"
+        android:textColor="#ffffff"
+        android:layout_alignBottom="@+id/brixTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/talhaoTextView"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantidade de caldo (Litros):"
+        android:id="@+id/qtdeCaldoTextView"
+        android:textSize="22dp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/brixTextView"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/caldoEditText"
+        android:textSize="22dp"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/qtdeCaldoTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="center" />
+
+</RelativeLayout>
+

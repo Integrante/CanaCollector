@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.breno.canacollector.Destilacao"
+    android:background="#2c5820">
+
+    <TextView android:text="Produção (litros):" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:id="@+id/producaoTextView"
+        android:layout_marginLeft="29dp"
+        android:textSize="22dp"
+        android:layout_marginTop="66dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Acidez:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:id="@+id/acideztextView"
+        android:textSize="22dp"
+        android:layout_below="@+id/producaoTextView"
+        android:layout_alignStart="@+id/producaoTextView"
+        android:layout_marginTop="54dp" />
+
+    <TextView
+        android:text="GL:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gLtextView"
+        android:textSize="22dp"
+        android:textColor="#ffffff"
+        android:layout_alignTop="@+id/acideztextView"
+        android:layout_toEndOf="@+id/armazenButton" />
+
+    <TextView
+        android:text="Destino do vinhoto:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/vinhotoTextView"
+        android:textColor="#ffffff"
+        android:textSize="22dp"
+        android:layout_marginTop="58dp"
+        android:layout_below="@+id/acideztextView"
+        android:layout_alignStart="@+id/acideztextView" />
+
+    <TextView
+        android:text="Tonel de Destino:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:textColor="#ffffff"
+        android:id="@+id/tonelTextView"
+        android:textSize="22dp"
+        android:layout_below="@+id/vinhotoEditText"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tonelSpinner"
+        android:textColor="#ffffff"
+        android:spinnerMode="dropdown"
+        android:layout_marginLeft="25dp"
+        android:textSize="22dp"
+        android:layout_below="@+id/tonelTextView"
+        android:layout_alignParentStart="true"
+        android:backgroundTint="#ffffff" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:textColor="#ffffff"
+        android:id="@+id/producaoEditText"
+        android:layout_alignBottom="@+id/producaoTextView"
+        android:layout_toEndOf="@+id/producaoTextView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/acidezEditText"
+        android:layout_marginLeft="15dp"
+        android:textColor="#ffffff"
+        android:layout_alignBottom="@+id/acideztextView"
+        android:layout_alignEnd="@+id/producaoTextView"
+        android:layout_toEndOf="@+id/acideztextView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/vinhotoEditText"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/vinhotoTextView"
+        android:layout_alignStart="@+id/vinhotoTextView"
+        android:layout_alignEnd="@+id/tonelSpinner" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Armazenar"
+        android:id="@+id/armazenButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/glEditText"
+        android:layout_alignBottom="@+id/gLtextView"
+        android:layout_toEndOf="@+id/gLtextView"
+        android:layout_marginStart="44dp" />
+
+</RelativeLayout>
