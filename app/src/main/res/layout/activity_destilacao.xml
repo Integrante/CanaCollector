@@ -37,7 +37,7 @@
         android:textSize="22dp"
         android:textColor="#ffffff"
         android:layout_alignTop="@+id/acideztextView"
-        android:layout_toEndOf="@+id/armazenButton" />
+        android:layout_toEndOf="@+id/armazenaButton" />
 
     <TextView
         android:text="Destino do vinhoto:"
@@ -108,14 +108,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Armazenar"
-        android:id="@+id/armazenButton"
+        android:id="@+id/armazenaButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="armazenaButton_clicked" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
+        android:textColor="#ffffff"
         android:ems="10"
         android:id="@+id/glEditText"
         android:layout_alignBottom="@+id/gLtextView"

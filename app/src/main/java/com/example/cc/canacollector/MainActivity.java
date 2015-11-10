@@ -1,5 +1,6 @@
 package com.example.cc.canacollector;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.cc.canacollector.Model.Dorna;
 import com.example.cc.canacollector.Model.Talhao;
+import com.example.cc.canacollector.Model.Tonel;
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -34,17 +36,28 @@ public class MainActivity extends AppCompatActivity {
     public void moagemButton_clicked(View v) {
         Intent i = new Intent(MainActivity.this, Moagem.class);
         startActivity(i);
+
+//         ProgressDialog pDialog = new ProgressDialog(MainActivity.this);
+//        pDialog.setMessage("Cadastrando toneis...");
+//        pDialog.setIndeterminate(false);
+//        pDialog.setCancelable(true);
+//        pDialog.show();
 //        String temp;
 //        ParseUser currentUser = ParseUser.getCurrentUser();
-
-//        for (int i = 1; i<12; i++) {
-//            Talhao talhao = new Talhao();
-//            temp = new String("T" + i);
-//            Toast.makeText(this.getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
-//            talhao.setName(temp);
-//            talhao.setUser(currentUser);
-//            talhao.saveInBackground();
+//
+//        for (int i = 1; i<=2; i++) {
+//            Tonel tonel = new Tonel();
+//            temp = new String("Tonel " + i + " - Inox");
+//
+//            tonel.setName(temp);
+//            tonel.setUser(currentUser);
+//            tonel.setTipo("Inox");
+//            tonel.setCapacidade(5000.0);
+//            tonel.setEstoque(0.0);
+//            tonel.saveInBackground();
 //        }
+//        pDialog.dismiss();
+//        Toast.makeText(this.getApplicationContext(), "DONE!", Toast.LENGTH_SHORT).show();
     }
 
     public void fermentaButton_clicked(View v) {
