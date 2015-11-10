@@ -1,6 +1,8 @@
 package com.example.cc.canacollector;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+import com.example.cc.canacollector.Model.Mosto;
 import com.example.cc.canacollector.Model.Talhao;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -29,7 +32,7 @@ public class Moagem extends AppCompatActivity implements OnItemSelectedListener 
 
     private Spinner talhoes;
     private Button save;
-    private EditText qtde;
+    private EditText qtdeCana, qtdeCaldo, brix;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,11 @@ public class Moagem extends AppCompatActivity implements OnItemSelectedListener 
         talhoes.setOnItemSelectedListener(this);
         spinnerSetup(itens);
 
-        qtde = (EditText) findViewById(R.id.qtdeCanaEditText);
+        qtdeCana = (EditText) findViewById(R.id.qtdeCanaEditText);
+        qtdeCaldo = (EditText) findViewById(R.id.caldoEditText);
+        brix = (EditText) findViewById(R.id.brixEditText);
         save = (Button) findViewById(R.id.moerSaveButton);
+        save.setEnabled(true);
     }
 
     @Override
@@ -51,11 +57,8 @@ public class Moagem extends AppCompatActivity implements OnItemSelectedListener 
         // On selecting a spinner item
         ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
         ((TextView) parent.getChildAt(0)).setTextSize(22);
-        String item = parent.getItemAtPosition(position).toString();
-
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
+
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
     }
@@ -94,17 +97,7 @@ public class Moagem extends AppCompatActivity implements OnItemSelectedListener 
            // }
         //});
 
-//        // Spinner Drop down elements
-//        List<String> categories = new ArrayList<String>();
-//        categories.add("MACONHA");
-//        categories.add("Business Services");
-//        categories.add("Computers");
-//        categories.add("Education");
-//        categories.add("Personal");
-//        categories.add("Travel");
-
-        List<String> temp = spinnerArray;
-        return temp;
+        return spinnerArray;
     }
 
     public void spinnerSetup(List<String> itens)
@@ -117,10 +110,63 @@ public class Moagem extends AppCompatActivity implements OnItemSelectedListener 
         talhoes.setAdapter(talhaoAdapter);
     }
 
+    public Talhao findTalhao(String nome) {
+        Talhao talhao = new Talhao();
+        ParseObject talhaoList;
+
+        //Recupera o talhao do usuario logado com o nome fornecido
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Talhao");
+        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.whereEqualTo("nome", nome);
+
+        try {
+            talhaoList = query.getFirst();
+            talhao = (Talhao)talhaoList;
+        }
+        catch (ParseException e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+        }
+        return talhao;
+    }
+
     public void moerSaveButton_clicked(View v) {
-        if ((qtde.getText() != null) && (talhoes.getSelectedItem().toString() != null))
-            Toast.makeText(this, "Preenchidos", Toast.LENGTH_LONG).show();
+        boolean saved = false;
+        save.setEnabled(false);
+        if ((!qtdeCana.getText().toString().isEmpty()) && (!talhoes.getSelectedItem().toString().isEmpty()) &&
+                (!brix.getText().toString().isEmpty()) && (!qtdeCaldo.getText().toString().isEmpty())) {
+            if (isOnline()) {
+                try {
+                    Mosto mosto = new Mosto();
+                    mosto.setUser(ParseUser.getCurrentUser());
+                    mosto.setBrix(Double.parseDouble(brix.getText().toString()));
+                    mosto.setCaldo(Double.parseDouble(qtdeCaldo.getText().toString()));
+                    mosto.setCana(Double.parseDouble(qtdeCana.getText().toString()));
+                    mosto.setTalhaoProveniente(findTalhao(talhoes.getSelectedItem().toString()));
+                    mosto.saveInBackground();
+                    saved = true;
+                } catch (Exception e) {
+                    save.setEnabled(true);
+                }
+            }
+            else {
+                Toast.makeText(this, "Verifique sua conexao com a internet e tente novamente...", Toast.LENGTH_LONG).show();
+                save.setEnabled(true);
+            }
+        }
         else
-            Toast.makeText(this, " Nao Preenchidos", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Por favor, insira todos os dados!", Toast.LENGTH_LONG).show();
+
+        if (saved) {
+            Toast.makeText(this, "Moagem salva com sucesso!", Toast.LENGTH_LONG).show();
+            finish();
+        }
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null &&
+                cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }
 }

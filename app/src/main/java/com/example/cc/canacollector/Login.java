@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.cc.canacollector.Model.Cachaca;
+import com.example.cc.canacollector.Model.ControleFermento;
+import com.example.cc.canacollector.Model.Dorna;
 import com.example.cc.canacollector.Model.Mosto;
 import com.example.cc.canacollector.Model.Talhao;
 import com.example.cc.canacollector.Model.Tonel;
@@ -41,6 +43,8 @@ public class Login extends AppCompatActivity {
         ParseObject.registerSubclass(Talhao.class);
         ParseObject.registerSubclass(Tonel.class);
         ParseObject.registerSubclass(Cachaca.class);
+        ParseObject.registerSubclass(Dorna.class);
+        ParseObject.registerSubclass(ControleFermento.class);
 
         Parse.initialize(this, "lR6GLeaXbzKFKbog1yK4ya0DU6D0R2HHrcA471Rb", "H6JEZRtTbqRdME8YjWNgtP2W3tByfxzDvYwLAaYe");
     }

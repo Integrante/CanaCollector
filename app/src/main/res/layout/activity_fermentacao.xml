@@ -45,15 +45,17 @@
         android:layout_alignParentStart="true" />
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fermentaSpinner"
         android:textColor="#ffffff"
+        android:textSize="23dp"
+        android:backgroundTint="#ffffff"
         android:layout_alignBottom="@+id/dornaTextView"
         android:layout_marginLeft="18dp"
         android:spinnerMode="dropdown"
         android:layout_toEndOf="@+id/dornaTextView"
-        android:layout_alignStart="@+id/saveButton" />
+        android:layout_alignStart="@+id/fermentaSaveButton" />
 
     <TextView
         android:text="pH:"
@@ -84,10 +86,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Salvar"
-        android:id="@+id/saveButton"
+        android:id="@+id/fermentaSaveButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="104dp" />
+        android:layout_marginBottom="104dp"
+        android:onClick="fermentaSaveButton_clicked" />
 
 </RelativeLayout>
 

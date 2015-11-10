@@ -15,12 +15,20 @@ public class Mosto extends ParseObject {
 
     public void setUser (ParseUser user) { put("user", user);}
 
-    public double getQuantidade() {
-        return getDouble("quantidade");
+    public double getCaldo() {
+        return getDouble("qtde_caldo");
     }
 
-    public void setQuantidade(Double quantidade) {
-        put("quantidade", quantidade);
+    public void setCaldo(Double quantidade) {
+        put("qtde_caldo", quantidade);
+    }
+
+    public double getCana() {
+        return getDouble("qtde_cana");
+    }
+
+    public void setCana(Double quantidade) {
+        put("qtde_cana", quantidade);
     }
 
     public double getBrix() {
@@ -35,8 +43,8 @@ public class Mosto extends ParseObject {
         return getString("talhao_proveniente");
     }
 
-    public void setTalhaoProveniente (String talhaoID) {
-        put("talhao_proveniente", talhaoID);
+    public void setTalhaoProveniente (Talhao talhao) {
+        put("talhao_proveniente", talhao);
     }
 
     public void setUuidString() {

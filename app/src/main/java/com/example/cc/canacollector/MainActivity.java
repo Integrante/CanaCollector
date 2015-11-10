@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.cc.canacollector.Model.Dorna;
 import com.example.cc.canacollector.Model.Talhao;
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseObject;
@@ -30,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
 //        Toast.makeText(this.getApplicationContext(), "VOLTANDO A MAIN PAGE!!!", Toast.LENGTH_SHORT).show();
     }
 
-
-
     public void moagemButton_clicked(View v) {
         Intent i = new Intent(MainActivity.this, Moagem.class);
         startActivity(i);
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 //        }
     }
 
-
     public void fermentaButton_clicked(View v) {
         Intent i = new Intent(MainActivity.this, Fermentacao.class);
         startActivity(i);
@@ -57,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     public void destilaButton_clicked(View v) {
         Intent i = new Intent(MainActivity.this, Destilacao.class);
         startActivity(i);
-
     }
 
     private void syncTodosToParse() {
