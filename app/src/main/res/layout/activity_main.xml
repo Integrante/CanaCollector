@@ -15,7 +15,11 @@
         android:textSize="30dp"
         android:textColor="#ffffffff"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:textAlignment="center"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -28,8 +32,10 @@
         android:textColor="#ffffffff"
         android:background="#d8a27640"
         android:layout_below="@+id/mainTextView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -41,7 +47,9 @@
         android:background="#d8a27640"
         android:layout_marginTop="56dp"
         android:layout_below="@+id/moagemButton"
+        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Button
@@ -54,7 +62,9 @@
         android:background="#d8a27640"
         android:layout_marginTop="61dp"
         android:layout_below="@+id/fermentaButton"
+        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>
