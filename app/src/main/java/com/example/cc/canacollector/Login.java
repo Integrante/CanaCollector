@@ -34,19 +34,6 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
-
-        //Register objects in Parse as well
-        ParseObject.registerSubclass(Mosto.class);
-        ParseObject.registerSubclass(Talhao.class);
-        ParseObject.registerSubclass(Tonel.class);
-        ParseObject.registerSubclass(Cachaca.class);
-        ParseObject.registerSubclass(Dorna.class);
-        ParseObject.registerSubclass(ControleFermento.class);
-
-        Parse.initialize(this, "lR6GLeaXbzKFKbog1yK4ya0DU6D0R2HHrcA471Rb", "H6JEZRtTbqRdME8YjWNgtP2W3tByfxzDvYwLAaYe");
     }
 
     @Override
