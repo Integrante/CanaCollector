@@ -36,7 +36,7 @@ public class ParseUtils {
 
     public static void registerParse(Context context) {
         // Enable Local Datastore.
-       // Parse.enableLocalDatastore(this);
+        Parse.enableLocalDatastore(context);
 
         //Register objects in Parse as well
         ParseObject.registerSubclass(Alambique.class);
