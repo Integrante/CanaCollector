@@ -12,8 +12,7 @@ import java.util.UUID;
  */
 @ParseClassName("Talhao")
 public class Talhao extends ParseObject {
-
-    public void setUser (ParseUser user) { put("user", user);}
+    public void setAlambique (Alambique alambique) { put("alambique", alambique);}
 
     public String getName () { return getString("nome"); }
 

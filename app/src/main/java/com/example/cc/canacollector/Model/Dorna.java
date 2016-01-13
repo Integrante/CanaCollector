@@ -12,7 +12,7 @@ import java.util.UUID;
  */
 @ParseClassName("Dorna")
 public class Dorna extends ParseObject {
-    public void setUser (ParseUser user) { put("user", user);}
+    public void setAlambique (Alambique alambique) { put("alambique", alambique);}
 
     public String getName () { return getString("nome"); }
 
@@ -35,7 +35,7 @@ public class Dorna extends ParseObject {
         return getString("uuid");
     }
 
-    public static ParseQuery<Mosto> getQuery() {
-        return ParseQuery.getQuery(Mosto.class);
+    public static ParseQuery<Dorna> getQuery() {
+        return ParseQuery.getQuery(Dorna.class);
     }
 }

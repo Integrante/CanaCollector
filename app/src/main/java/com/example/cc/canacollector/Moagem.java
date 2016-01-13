@@ -18,6 +18,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 import com.example.cc.canacollector.Model.Mosto;
 import com.example.cc.canacollector.Model.Talhao;
+import com.example.cc.canacollector.helper.AppUtils;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -68,7 +69,7 @@ public class Moagem extends AppCompatActivity implements OnItemSelectedListener 
         List<ParseObject> talhaoList;
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Talhao");
-        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.whereEqualTo("alambique", AppUtils.getAlambique());
         query.orderByAscending("nome");
         // = query.find();
         //Query a ser realizada nao pode ser em background senao nao eh possivel atualizar o spinner;
@@ -116,7 +117,7 @@ public class Moagem extends AppCompatActivity implements OnItemSelectedListener 
 
         //Recupera o talhao do usuario logado com o nome fornecido
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Talhao");
-        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.whereEqualTo("alambique", AppUtils.getAlambique());
         query.whereEqualTo("nome", nome);
 
         try {
@@ -134,10 +135,10 @@ public class Moagem extends AppCompatActivity implements OnItemSelectedListener 
         save.setEnabled(false);
         if ((!qtdeCana.getText().toString().isEmpty()) && (!talhoes.getSelectedItem().toString().isEmpty()) &&
                 (!brix.getText().toString().isEmpty()) && (!qtdeCaldo.getText().toString().isEmpty())) {
-            if (isOnline()) {
+            if (AppUtils.isOnline(this.getApplicationContext())) {
                 try {
                     Mosto mosto = new Mosto();
-                    mosto.setUser(ParseUser.getCurrentUser());
+                    mosto.setAlambique(AppUtils.getAlambique());
                     mosto.setBrix(Double.parseDouble(brix.getText().toString()));
                     mosto.setCaldo(Double.parseDouble(qtdeCaldo.getText().toString()));
                     mosto.setCana(Double.parseDouble(qtdeCana.getText().toString()));
@@ -162,11 +163,11 @@ public class Moagem extends AppCompatActivity implements OnItemSelectedListener 
         }
     }
 
-    public boolean isOnline() {
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        return cm.getActiveNetworkInfo() != null &&
-                cm.getActiveNetworkInfo().isConnectedOrConnecting();
-    }
+//    public boolean isOnline() {
+//        ConnectivityManager cm =
+//                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//
+//        return cm.getActiveNetworkInfo() != null &&
+//                cm.getActiveNetworkInfo().isConnectedOrConnecting();
+//    }
 }

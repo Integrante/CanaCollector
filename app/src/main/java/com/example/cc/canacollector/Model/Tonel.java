@@ -12,8 +12,7 @@ import java.util.UUID;
  */
 @ParseClassName("Tonel")
 public class Tonel extends ParseObject {
-
-    public void setUser (ParseUser user) { put("user", user);}
+    public void setAlambique (Alambique alambique) { put("alambique", alambique);}
 
     public String getName () { return getString("nome"); }
 
@@ -40,7 +39,7 @@ public class Tonel extends ParseObject {
         return getString("uuid");
     }
 
-    public static ParseQuery<Mosto> getQuery() {
-        return ParseQuery.getQuery(Mosto.class);
+    public static ParseQuery<Tonel> getQuery() {
+        return ParseQuery.getQuery(Tonel.class);
     }
 }

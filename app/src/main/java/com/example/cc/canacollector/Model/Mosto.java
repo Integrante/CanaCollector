@@ -12,8 +12,7 @@ import java.util.UUID;
  */
 @ParseClassName("Mosto")
 public class Mosto extends ParseObject {
-
-    public void setUser (ParseUser user) { put("user", user);}
+    public void setAlambique (Alambique alambique) { put("alambique", alambique);}
 
     public double getCaldo() {
         return getDouble("qtde_caldo");

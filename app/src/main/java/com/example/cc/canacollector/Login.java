@@ -17,6 +17,7 @@ import com.example.cc.canacollector.Model.Dorna;
 import com.example.cc.canacollector.Model.Mosto;
 import com.example.cc.canacollector.Model.Talhao;
 import com.example.cc.canacollector.Model.Tonel;
+import com.example.cc.canacollector.helper.AppUtils;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -26,8 +27,8 @@ import com.parse.SignUpCallback;
 
 public class Login extends AppCompatActivity {
 
-    private static final String USER = "Taverna Real";
-    private static final String PASSWORD = "tavernademinas";
+    private static final String USER = "Taverna";
+    private static final String PASSWORD = "taverna";
     private static final String TAG_ERROR = "Failed to Login";
 
     @Override
@@ -42,17 +43,17 @@ public class Login extends AppCompatActivity {
         finish();
     }
 
-    public boolean isOnline() {
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        return cm.getActiveNetworkInfo() != null &&
-                cm.getActiveNetworkInfo().isConnectedOrConnecting();
-    }
+//    public boolean isOnline() {
+//        ConnectivityManager cm =
+//                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//
+//        return cm.getActiveNetworkInfo() != null &&
+//                cm.getActiveNetworkInfo().isConnectedOrConnecting();
+//    }
 
     public void loginButton_Clicked(View v){
         //Verifica conexao com a internet
-        if (!isOnline()) {
+        if (!AppUtils.isOnline(this.getApplicationContext())) {
             Toast.makeText(this.getApplicationContext(), "No internet Connection", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -83,24 +84,26 @@ public class Login extends AppCompatActivity {
     }
 
     public void createAccountButton_clicked(View v) {
-        ParseUser user = new ParseUser();
-        user.setUsername(USER);
-        user.setPassword(PASSWORD);
-        user.setEmail("email@example.com");
+        Toast.makeText(Login.this, "em andanmento", Toast.LENGTH_LONG).show();
 
-// other fields can be set just like with ParseObject
-        //       user.put("phone", "650-253-0000");
-
-        user.signUpInBackground(new SignUpCallback() {
-            public void done(ParseException e) {
-                if (e == null) {
-                    Intent i = new Intent(Login.this, MainActivity.class);
-                    startActivity(i);
-                } else {
-                    //return
-                    System.out.println(e.toString());
-                }
-            }
-        });
+//        ParseUser user = new ParseUser();
+//        user.setUsername(USER);
+//        user.setPassword(PASSWORD);
+//        user.setEmail("email@example.com");
+//
+//// other fields can be set just like with ParseObject
+//        //       user.put("phone", "650-253-0000");
+//
+//        user.signUpInBackground(new SignUpCallback() {
+//            public void done(ParseException e) {
+//                if (e == null) {
+//                    Intent i = new Intent(Login.this, MainActivity.class);
+//                    startActivity(i);
+//                } else {
+//                    //return
+//                    System.out.println(e.toString());
+//                }
+//            }
+//        });
     }
 }

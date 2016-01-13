@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,8 +16,10 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cc.canacollector.Model.Alambique;
 import com.example.cc.canacollector.Model.Cachaca;
 import com.example.cc.canacollector.Model.Tonel;
+import com.example.cc.canacollector.helper.AppUtils;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -64,7 +67,7 @@ public class Destilacao extends AppCompatActivity implements OnItemSelectedListe
         List<ParseObject> tonelList;
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Tonel");
-        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.whereEqualTo("alambique", AppUtils.getAlambique());
         query.orderByAscending("nome");
         // = query.find();
         //Query a ser realizada nao pode ser em background senao nao eh possivel atualizar o spinner;
@@ -97,10 +100,11 @@ public class Destilacao extends AppCompatActivity implements OnItemSelectedListe
         if ((!producao.getText().toString().isEmpty()) && (!tonelDestino.getSelectedItem().toString().isEmpty())
                 && (!acidez.getText().toString().isEmpty()) && (!gl.getText().toString().isEmpty())
                 && (!vinhoto.getText().toString().isEmpty())) {
-            if (isOnline()) {
+            if (AppUtils.isOnline(this.getApplicationContext())) {
                 try {
                     Cachaca cachaca = new Cachaca();
-                    cachaca.setUser(ParseUser.getCurrentUser());
+                    cachaca.setAlambique(AppUtils.getAlambique());
+                    //cachaca.setUser(ParseUser.getCurrentUser());
                     cachaca.setQuantidade(Double.parseDouble(producao.getText().toString()));
                     cachaca.setAcidez(Double.parseDouble(acidez.getText().toString()));
                     cachaca.setGL(Double.parseDouble(gl.getText().toString()));
@@ -114,6 +118,7 @@ public class Destilacao extends AppCompatActivity implements OnItemSelectedListe
                     tonel.saveInBackground();
                     saved = true;
                 } catch (Exception e) {
+                    Log.e("Destilacao::", e.toString());
                     armazena.setEnabled(true);
                 }
             }
@@ -133,13 +138,13 @@ public class Destilacao extends AppCompatActivity implements OnItemSelectedListe
         }
     }
 
-    public boolean isOnline() {
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        return cm.getActiveNetworkInfo() != null &&
-                cm.getActiveNetworkInfo().isConnectedOrConnecting();
-    }
+//    public boolean isOnline() {
+//        ConnectivityManager cm =
+//                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//
+//        return cm.getActiveNetworkInfo() != null &&
+//                cm.getActiveNetworkInfo().isConnectedOrConnecting();
+//    }
 
     public Tonel findTonel(String nome) {
         Tonel tonel = new Tonel();
@@ -147,7 +152,7 @@ public class Destilacao extends AppCompatActivity implements OnItemSelectedListe
 
         //Recupera a dorna do usuario logado com o nome fornecido
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Tonel");
-        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.whereEqualTo("alambique", AppUtils.getAlambique());
         query.whereEqualTo("nome", nome);
 
         try {

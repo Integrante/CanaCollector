@@ -1,6 +1,9 @@
 package com.example.cc.canacollector.Model;
 
+import android.util.Log;
+
 import com.parse.ParseClassName;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -13,7 +16,7 @@ import java.util.UUID;
 @ParseClassName("Cachaca")
 public class Cachaca extends ParseObject{
 
-    public void setUser (ParseUser user) { put("user", user);}
+    public void setAlambique (Alambique alambique) { put("alambique", alambique);}
 
     public double getQuantidade() {
         return getDouble("quantidade");
@@ -60,7 +63,7 @@ public class Cachaca extends ParseObject{
         return getString("uuid");
     }
 
-    public static ParseQuery<Mosto> getQuery() {
-        return ParseQuery.getQuery(Mosto.class);
+    public static ParseQuery<Cachaca> getQuery() {
+        return ParseQuery.getQuery(Cachaca.class);
     }
 }

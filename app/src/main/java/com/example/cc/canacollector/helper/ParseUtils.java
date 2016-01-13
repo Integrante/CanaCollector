@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.cc.canacollector.Model.Alambique;
 import com.example.cc.canacollector.Model.Cachaca;
 import com.example.cc.canacollector.Model.ControleFermento;
 import com.example.cc.canacollector.Model.Dorna;
@@ -38,6 +39,7 @@ public class ParseUtils {
        // Parse.enableLocalDatastore(this);
 
         //Register objects in Parse as well
+        ParseObject.registerSubclass(Alambique.class);
         ParseObject.registerSubclass(Mosto.class);
         ParseObject.registerSubclass(Talhao.class);
         ParseObject.registerSubclass(Tonel.class);

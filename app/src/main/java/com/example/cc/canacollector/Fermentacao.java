@@ -19,6 +19,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 import com.example.cc.canacollector.Model.ControleFermento;
 import com.example.cc.canacollector.Model.Dorna;
+import com.example.cc.canacollector.helper.AppUtils;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -61,7 +62,7 @@ public class Fermentacao extends AppCompatActivity implements OnItemSelectedList
         List<ParseObject> dornaList;
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Dorna");
-        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.whereEqualTo("alambique", AppUtils.getAlambique());
         query.orderByAscending("nome");
         // = query.find();
         //Query a ser realizada nao pode ser em background senao nao eh possivel atualizar o spinner;
@@ -92,10 +93,11 @@ public class Fermentacao extends AppCompatActivity implements OnItemSelectedList
         boolean saved = false;
         save.setEnabled(false);
         if ((!temp.getText().toString().isEmpty()) && (!spinner.getSelectedItem().toString().isEmpty())) {
-            if (isOnline()) {
+            if (AppUtils.isOnline(this.getApplicationContext())) {
                 try {
                     ControleFermento controle = new ControleFermento();
-                    controle.setUser(ParseUser.getCurrentUser());
+                    //controle.setUser(ParseUser.getCurrentUser());
+                    controle.setAlambique(AppUtils.getAlambique());
                     controle.setTemperatura(Double.parseDouble(temp.getText().toString()));
                     //Verifica se o campo pH esta preenchido e deve ser salvo ao controle
                     if(!pH.getText().toString().isEmpty())
@@ -123,13 +125,13 @@ public class Fermentacao extends AppCompatActivity implements OnItemSelectedList
         }
     }
 
-    public boolean isOnline() {
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        return cm.getActiveNetworkInfo() != null &&
-                cm.getActiveNetworkInfo().isConnectedOrConnecting();
-    }
+//    public boolean isOnline() {
+//        ConnectivityManager cm =
+//                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//
+//        return cm.getActiveNetworkInfo() != null &&
+//                cm.getActiveNetworkInfo().isConnectedOrConnecting();
+//    }
 
     public Dorna findDorna(String nome) {
         Dorna dorna= new Dorna();
@@ -137,7 +139,7 @@ public class Fermentacao extends AppCompatActivity implements OnItemSelectedList
 
         //Recupera a dorna do usuario logado com o nome fornecido
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Dorna");
-        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.whereEqualTo("alambique", AppUtils.getAlambique());
         query.whereEqualTo("nome", nome);
 
         try {
